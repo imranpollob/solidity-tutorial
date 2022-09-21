@@ -392,6 +392,51 @@ contract Functions {
     function payMeMoney() public payable {
         amount += msg.value;
     }
+
+
+    // Multiple return: it's possible to return multiple values
+    function returnMany() public pure returns(uint, bool) {
+        return (123, true);
+    }
+ 
+    function namedReturn() public pure returns(uint _i, bool _b) {
+        return (123, true);
+    }
+
+    function assignedReturn() public pure returns(uint _i, bool _b) {
+        _i = 123;
+        _b = true;
+    }
+}
+```
+
+Function Modifier
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.17;
+
+contract Functions {
+    int public amount = 3;
+    int public noOfAttempts;
+
+    // Basic increment function
+    function incrementAmount() public {
+        amount++;
+    }
+    
+    // Function modifier: piece of code runs before and after the caller function
+    modifier NegativeCheck() {
+        // The code below runs before caller function
+        require(amount > 0, "Amount can't be negative");
+        _; // At this point execution returns to caller functon
+        // The code below runs after the execution of caller function
+        noOfAttempts++; 
+    }
+    // This function runs NegativeCheck modifier first then execute it's own code
+    function decrementAmount() public NegativeCheck {
+        amount--;
+    }
 }
 ```
 
