@@ -8,6 +8,7 @@ Learn Solidity From Examples.
 - [Basic Structure](#basic-structure)
 - [Data Types](#data-types)
 - [Operators](#operators)
+- [Statement](#statement)
 - [Function](#function)
 
 
@@ -199,6 +200,63 @@ List of operators with order of precedence
 | _14_                 | Ternary operator                                                  | `<conditional> ? <if-true> : <if-false>` |
 | _14_ | Assignment operators | `=`,`\|=`, `^=`, `&=`, `<<=`, `>>=`, `+=`, `-=`, `*=`, `/=`, `%=` |
 | _15_                 | Comma operator                                                    | `,`                                      |
+
+
+[🔝Back to Table of Contents](#table-of-contents)
+
+
+## Statement
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.17;
+
+contract Statement {
+    uint time = 5;
+    string greeting;
+
+    function conditionalStatement() public {
+        // if, else if, else is just like other programming languages
+        if (time < 10) {
+            greeting = "Good morning";
+        } else if (time < 20) {
+            greeting = "Good day";
+        } else {
+            greeting = "Good evening";
+        }
+
+        // Ternary operator
+        greeting = time < 15 ? "Day" : "Night";
+
+    }
+
+    function loop() public {
+        // for loop is same as other programming languages
+        for (uint i = 1; i < 10; i++) {
+            greeting = "";
+        }
+
+        // while loop is also same as other programming languages
+        while (time <= 10) {
+            time++;
+        }
+
+        // loops also supports break and continue
+        while(true) {
+            time++;
+
+            if (time == 0) {
+                continue;
+            }
+
+            if (time == 25) {
+                break;
+            }
+        }
+    }
+
+}
+```
 
 
 [🔝Back to Table of Contents](#table-of-contents)
