@@ -8,6 +8,7 @@ Learn Solidity From Examples.
 - [Basic Structure](#basic-structure)
 - [Data Types](#data-types)
 - [Operators](#operators)
+- [Vaiable Types](#vaiable-types)
 - [Statement](#statement)
 - [Function](#function)
 
@@ -164,7 +165,6 @@ contract DataTypes {
     }
     
 }
-
 ```
 
 [🔝Back to Table of Contents](#table-of-contents)
@@ -200,6 +200,45 @@ List of operators with order of precedence
 | _14_                 | Ternary operator                                                  | `<conditional> ? <if-true> : <if-false>` |
 | _14_ | Assignment operators | `=`,`\|=`, `^=`, `&=`, `<<=`, `>>=`, `+=`, `-=`, `*=`, `/=`, `%=` |
 | _15_                 | Comma operator                                                    | `,`                                      |
+
+
+[🔝Back to Table of Contents](#table-of-contents)
+
+
+## Vaiable Types
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.17;
+
+contract VariableTypes {
+    // State variable: values are permanently stored in a contract storage.
+    uint public state_variable;
+
+    function getSummation() public pure returns(uint) {
+        // Local variable: values are available only within a function where it is defined
+        uint local_variable1 = 2;
+        uint local_variable2 = 3;
+        return local_variable1 + local_variable2;
+    }
+    
+    function getSender() public view returns(address) {
+        // Global Variables − Special variables exists in the global namespace used to 
+        // get information about the blockchain
+        // Application Binary Interface operations. Ex:
+        abi;
+        // Block information. Ex:
+        block.number;
+        // Message information. Ex:
+        msg.data;
+        // Transaction information. Ex:
+        tx.gasprice;
+        // Different fuinctions. Ex:
+        // assert, require, keccak256, sha256
+        return msg.sender;
+    }
+}
+```
 
 
 [🔝Back to Table of Contents](#table-of-contents)
