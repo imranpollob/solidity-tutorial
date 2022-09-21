@@ -7,6 +7,8 @@ Learn Solidity From Examples.
 - [Online IDE](#online-ide)
 - [Basic Structure](#basic-structure)
 - [Data Types](#data-types)
+- [Operators](#operators)
+- [Function](#function)
 
 
 ## Online IDE
@@ -35,7 +37,7 @@ pragma solidity ^0.8.17;
 
 // Contracts: Contracts in Solidity are similar to classes in object-oriented languages.
 // They contain persistent data in state variables, and functions that can modify these variables.
-contract Example {
+contract BasicStructure {
     // Comments: Single-line comments (//) and multi-line comments (/*...*/) are possible
     // This is a single-line comment.
 
@@ -79,7 +81,7 @@ contract SimpleStorage {
 
 pragma solidity ^0.8.17;
 
-contract Example {
+contract DataTypes {
     /// Fixed size value types
 
 
@@ -163,3 +165,69 @@ contract Example {
 }
 
 ```
+
+[🔝Back to Table of Contents](#table-of-contents)
+
+
+## Operators
+List of operators with order of precedence
+
+| Precedence           | Description                                                       | Operator                                 |
+| -------------------- | ----------------------------------------------------------------- | ---------------------------------------- |
+| _1_                  | Postfix increment and decrement                                   | `++`, `--`                               |
+| _1_ | New expression       | `new <typename>`                                                  |
+| _1_ | Array subscripting   | `<array>[<index>]`                                                |
+| _1_ | Member access        | `<object>.<member>`                                               |
+| _1_ | Function-like call   | `<func>(<args...>)`                                               |
+| _1_ | Parentheses          | `(<statement>)`                                                   |
+| _2_                  | Prefix increment and decrement                                    | `++`, `--`                               |
+| _2_ | Unary minus          | `-`                                                               |
+| _2_ | Unary operations     | `delete`                                                          |
+| _2_ | Logical NOT          | `!`                                                               |
+| _2_ | Bitwise NOT          | `~`                                                               |
+| _3_                  | Exponentiation                                                    | `**`                                     |
+| _4_                  | Multiplication, division and modulo                               | `*`, `/`, `%`                            |
+| _5_                  | Addition and subtraction                                          | `+`, `-`                                 |
+| _6_                  | Bitwise shift operators                                           | `<<`, `>>`                               |
+| _7_                  | Bitwise AND                                                       | `&`                                      |
+| _8_                  | Bitwise XOR                                                       | `^`                                      |
+| _9_                  | Bitwise OR                                                        | `\|`                                      |
+| _10_                 | Inequality operators                                              | `<`, `>`, `<=`, `>=`                     |
+| _11_                 | Equality operators                                                | `==`, `!=`                               |
+| _12_                 | Logical AND                                                       | `&&`                                     |
+| _13_                 | Logical OR                                                        | `\|\|`                                     |
+| _14_                 | Ternary operator                                                  | `<conditional> ? <if-true> : <if-false>` |
+| _14_ | Assignment operators | `=`,`\|=`, `^=`, `&=`, `<<=`, `>>=`, `+=`, `-=`, `*=`, `/=`, `%=` |
+| _15_                 | Comma operator                                                    | `,`                                      |
+
+
+[🔝Back to Table of Contents](#table-of-contents)
+
+
+## Function
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.17;
+
+contract Functions {
+    /*
+    function myFunction() <visibility specifier> returns (bool) {
+        return true;
+    }
+    */
+    uint amount;
+
+    function getAmount() public view returns(uint) {
+        return amount;
+    }
+
+    function setAmount(uint _amount) public {
+        amount = _amount;
+    }
+
+}
+```
+
+[🔝Back to Table of Contents](#table-of-contents)
+
