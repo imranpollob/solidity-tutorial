@@ -213,7 +213,16 @@ pragma solidity ^0.8.17;
 
 contract VariableTypes {
     // State variable: values are permanently stored in a contract storage.
-    uint public state_variable;
+    uint state_variable;
+    /* State variable visibility
+    - private: only available inside the contract that defines it (default)
+    - internal: only available inside the contract that defines it AND 
+                any contracts that inherit it
+    - public: available to any contract or third party that wants to call it
+    */
+    uint private default_private_variable;
+    uint internal internal_variable;
+    uint public public_variable;
 
     function getSummation() public pure returns(uint) {
         // Local variable: values are available only within a function where it is defined
@@ -309,20 +318,80 @@ pragma solidity ^0.8.17;
 
 contract Functions {
     /*
-    function myFunction() <visibility specifier> returns (bool) {
+    function myFunction(type var1, type var2) <visibility-specifier> <modifier> returns (bool) {
         return true;
     }
+
+    Funtion can receive arguments but it's not required.
+    Data type of arguments should be specified.
+
+    Function Visibility Specifiers defines who has access to the functions in your contract.
+    A function’s visibility can be set to
+    Private: only available inside the contract that defines it.
+    Internal: only available inside the contract that defines it AND 
+              any contracts that inherit it
+    External: only be called by external contacts.
+              Not visible inside the contract that defines it.
+    Public: available to any contract or third party that wants to call it.
+
+    Modifiers dictate a Solidity functions behavior
+    view: functions are read only functions and do not MODIFY the state variables
+    pure: more restrictive then view functions and do not READ or MODIFY state variables
+    payable: functions provide a mechanism to receive funds in your contract
+    If not specified that means function can access and modify state variables
+
+    Function can return value but it's not required.
+    Data type of the return value should be specified.
     */
+
     uint amount;
 
-    function getAmount() public view returns(uint) {
-        return amount;
+    // Writes a state variable, publicly available function
+    function setStaticAmount() public {
+        amount = 10;
     }
 
+    // Writes a state variable from an argument
     function setAmount(uint _amount) public {
         amount = _amount;
     }
 
+    // Reads a state variable
+    function getAmount() public view returns(uint) {
+        return amount;
+    }
+
+    // Never accessed a state variable
+    function getStaticValue() public pure returns(uint) {
+        uint local_variable = 10;
+        return local_variable;
+    }
+
+    function getSummation(uint a, uint b) public pure returns(uint) {
+        return a + b;
+    }
+
+    // Only this contact can access it
+    function getMultiplication(uint a, uint b) private pure returns(uint) {
+        return a * b;
+    }
+
+    // Inherited contracts also have access to this funtion 
+    function getSubtraction(uint a, uint b) internal pure returns(uint) {
+        return a - b;
+    }
+
+    // Only external contracts have access to it 
+    function getExponent(uint a, uint b) external pure returns(uint) {
+        return a ** b;
+    }
+
+    
+    // payable is added to this function so another contract can call it and
+    // send ether to this contract
+    function payMeMoney() public payable {
+        amount += msg.value;
+    }
 }
 ```
 
